@@ -1,2 +1,2 @@
 #!/bin/bash
-paste -d, - - < input.txt | cut -d, -f1 | grep -n '^' | grep -E '^[02468]:'
+paste -d, - - | cut -d, -f1 | grep -n '^' | grep -E '^[02468]:'
