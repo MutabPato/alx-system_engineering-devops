@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#displays listening ports
+
+ping -c 5 "$1"
