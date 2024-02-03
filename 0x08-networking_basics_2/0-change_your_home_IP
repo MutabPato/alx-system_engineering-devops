@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 #configures an Ubuntu server
 
-if [ "$EUID" -ne 0 ]; then
-	exit 1
-fi 
+facebook="8.8.8.8"
 
-cp /etc/hosts ~/hosts.new
+sudo cp /etc/hosts ~/hosts.new
 
-sed -i 's/127.0.0.1\tlocalhost/127.0.0.2\localhost/' ~/hosts.new
-sed -i '/facebook.com/s/\b[0-9.]\+\b/8.8.8.8/' ~/hosts.new
+sudo sed -i 's/127.0.0.1/127.0.0.2/' ~/hosts.new
+echo -e "$facebook\tfacebook.com" | sudo tee -a ~/hosts.new
 
-cp ~f ~/hosts.new /etc/hosts
+sudo cp -f ~/hosts.new /etc/hosts
