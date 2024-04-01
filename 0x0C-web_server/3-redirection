@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
-#Install nginx web server
+#Redirection
 
+#Update packages
 apt-get update
 apt-get install -y nginx
-echo "Hello World!" > /var/www/html/index.html
-service nginx start
-sed -i "/server_name _;/ a\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGU1wu4 permanent;" /etc/nginx/site-enabled/default
+
+#Create an index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+#Handle redirects
+string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/MutabPato permanent;"
+sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
+
+#Restart Nginx service
 service nginx restart
