@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#404 not found
+
+#Update packages
+sudo apt-get update
+sudo apt-get install -y nginx
+
+#Create an index.html page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+#Handle redirects
+string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/MutabPato permanent;"
+sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-enabled/default
+
+#404 error page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+new_string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\troot \/var/www/html;\n\t\tinternal;\n\t}"
+
+sudo sed -i "s/listen 80 default_server;/$new_string/" /etc/nginx/sites-enabled/default
+
+#Restart Nginx service
+sudo service nginx restart
