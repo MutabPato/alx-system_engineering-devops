@@ -3,12 +3,10 @@
 
 current_date=$(date +"%d-%m-%Y")
 
-dump_file="backup.sql"
-
 archive_file="$current_date.tar.gz"
 
 # MySQL dump command
-mysqldump --all-databases -u root -p"$1" > "dump_file"
+mysqldump --all-databases -u root -p"$1" > backup.sql
 
 # Create compressed file
-tar -czvf "$archive_file" "$dump_file"
+tar -czvf "$archive_file" backup.sql
