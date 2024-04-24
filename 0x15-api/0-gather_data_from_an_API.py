@@ -36,7 +36,7 @@ if __name__ == "__main__":
             completed.append(todo.get("title"))
 
     #  display progress information
-    print("Employee {} is done with tasks({}/{})".format(user.get(
+    print("Employee {} is done with tasks({}/{}):".format(user.get(
         "name"), len(completed), len(todos)))
 
     # display titles of completed tasks
