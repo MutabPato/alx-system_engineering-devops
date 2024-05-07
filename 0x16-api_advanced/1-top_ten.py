@@ -27,4 +27,4 @@ def top_ten(subreddit):
             print(index['data']['title'])
 
     else:
-        return None
+        print(None)
