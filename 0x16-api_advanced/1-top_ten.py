@@ -7,15 +7,16 @@ import json
 import requests
 
 
-def number_of_subscribers(subreddit):
+def top_ten(subreddit):
     """
-    queries the Reddit API and returns the number of subscribers
+    queries the Reddit API and prints the titles of the first
+    10 hot posts listed for a given subreddit
     """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
 
     headers = {'User-Agent': 'Mozilla/5.0'}
 
-    params {'limit': 10}
+    params = {'limit': 10}
 
     response = requests.get(url, headers=headers, params=params)
 
@@ -23,7 +24,7 @@ def number_of_subscribers(subreddit):
 
         results = response.json()
         for index in results['data']['children']:
-            print index['data']['title']
+            print(index['data']['title'])
 
     else:
         return None
