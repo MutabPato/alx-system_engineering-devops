@@ -19,6 +19,9 @@ sudo apt install -y net-tools
 sudo apt-get install -y gunicorn
 
 # Remove any current Airbnb repository
+rm -rf AirBnB_clone_v*
+
+# Clome my repos
 git clone https://github.com/MutabPato/AirBnB_clone_v2
 git clone https://github.com/MutabPato/AirBnB_clone_v3
 git clone https://github.com/MutabPato/AirBnB_clone_v4
@@ -40,7 +43,7 @@ server {
    listen [::]:80 default_server;
    root /var/www/html;
    index index.html index.htm index.nginx-debian.html;
-   server_name;
+   server_name _;
    add-header X-Served-By \$hostname;
    location /hbnb_static {
 	alias /data/web_static/current/;
@@ -78,7 +81,7 @@ echo "Nginx configuration has been successfully updated."
 
 # Setup tmux session for task 4
 cd /home/ubuntu/AirBnB_clone_v3
-tmux new-session -d 'gunicorn --bind 0.0.0.0:5002 api.v1.app:app'
+tmux new-session -d -s task4 'gunicorn --bind 0.0.0.0:5002 api.v1.app:app'
 
 # Setup tmux session for task 5
 cd /home/ubuntu/AirBnB_clone_v4
